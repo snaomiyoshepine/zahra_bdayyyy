@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Match - Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- CSS KHUSUS GAME DITANAM DI SINI BIAR GAK BENTROK -->
+  <style>
+    /* Styling Tombol Musik di Pojok Kanan Atas */
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  color: #ff758c;
+  border: 1px solid #ff758c;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.music-toggle:hover {
+  background: #ff758c;
+  color: white;
+  transform: scale(1.05);
+}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #ffe6ea, #fecfef, #fce4ec, #ffd1dc);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Header Game */
+    .game-header { text-align: center; margin-bottom: 20px; }
+    .game-header h1 { color: #ff758c; margin-bottom: 5px; font-size: 1.8rem; }
+    .game-header p { font-size: 0.9rem; color: #555; }
+
+    /* Grid Kartu */
+    #game-section { width: 100%; max-width: 500px; }
+    .memory-game {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 100%;
+    }
+
+    /* Desain Kartu */
+    .card { width: 100%; aspect-ratio: 3/4; perspective: 1000px; cursor: pointer; }
+    .card-inner {
+      width: 100%; height: 100%; position: relative;
+      transition: transform 0.6s; transform-style: preserve-3d;
+    }
+    .card.flip .card-inner { transform: rotateY(180deg); }
+    
+    .card-front, .card-back {
+      width: 100%; height: 100%; position: absolute;
+      backface-visibility: hidden; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .card-front { background: #ff758c; color: white; font-size: 2rem; font-weight: bold; }
+    .card-back { background: white; transform: rotateY(180deg); padding: 5px; flex-direction: column; overflow: hidden; }
+    .card-back img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+    
+    .text-card { font-size: 0.55rem; text-align: center; font-weight: 600; color: #ff758c; line-height: 1.3; }
+
+    /* Tombol Kembali & Next */
+    .btn-back {
+      position: fixed; top: 20px; left: 20px;
+      background: white; color: #ff758c; padding: 8px 15px;
+      border-radius: 20px; text-decoration: none; font-weight: 600;
+      font-size: 0.9rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 50; transition: 0.2s ease;
+    }
+    .btn-back:hover { transform: scale(1.05); }
+
+    .btn-next {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #ff758c; color: white; padding: 10px 20px;
+      border-radius: 30px; text-decoration: none; font-weight: 600;
+      box-shadow: 0 4px 10px rgba(255, 117, 140, 0.4); z-index: 50;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 117, 140, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0); }
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="btn-back">⬅</a>
+
+  <!-- Audio Backsound -->
+<audio id="bg-music" loop>
+  <source src="WhatsApp Audio 2026-10-29 at 18.55.30.mpeg" type="audio/mpeg">
+</audio>
+
+<button class="music-toggle" onclick="toggleMusic()">
+  <span id="music-icon">🎵</span>
+</button>
+
+  <main id="game-section">
+    <div class="game-header">
+      <h1>Memory Match</h1>
+      <p>Temukan 8 pasang foto dan memorinya!</p>
+    </div>
+
+    <div class="memory-game">
+      <!-- Momen 1 -->
+      <div class="card" data-momen="m1"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="berempatt.jpg" alt="1"></div></div></div>
+      <div class="card" data-momen="m1"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">Full team terbaru gaiss (update soon!!)<br>22 Maret 2025</div></div></div>
+      <!-- Momen 2 -->
+      <div class="card" data-momen="m2"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="WhatsApp Unknown 2026-10-29 at 19.26.42/bd2025.jpeg" alt="2"></div></div></div>
+      <div class="card" data-momen="m2"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">Your bday last year!!!<br>32 Oktober 2025<br>(biar ga keliatan 1 Nov bgt mwehe, sekarang mah pas kan pas kan well ah)</div></div></div>
+      <!-- Momen 3 -->
+      <div class="card" data-momen="m3"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="Foto/bday182020.jpg" alt="3"></div></div></div>
+      <div class="card" data-momen="m3"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">Your bday a few years ago... (omaygatt kita masih cimit-cimit)<br>Oktober 2020</div></div></div>
+      <!-- Momen 4 -->
+      <div class="card" data-momen="m4"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="Foto/sma.jpg" alt="4"></div></div></div>
+      <div class="card" data-momen="m4"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">Masa-masa remaja uhuy pinkeu pinkeu~ (xerab gini ya boss)</div></div></div>
+      <!-- Momen 5 -->
+      <div class="card" data-momen="m5"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="WhatsApp Unknown 2026-10-29 at 19.26.42/w1.jpeg" alt="5"></div></div></div>
+      <div class="card" data-momen="m5"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">Wis-udah kamuuu~ (berasa detektif yang harus sembunyi dari kamu dulu)<br>01 Oktober 2024</div></div></div>
+      <!-- Momen 6 -->
+      <div class="card" data-momen="m6"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="WhatsApp Unknown 2026-10-29 at 19.26.35/eng11.jpeg" alt="6"></div></div></div>
+      <div class="card" data-momen="m6"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">Look how pretty our girl at her engagement! (OMG!!!)<br>20 Desember 2025</div></div></div>
+      <!-- Momen 7 -->
+      <div class="card" data-momen="m7"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="smazahra.jpg" alt="7"></div></div></div>
+      <div class="card" data-momen="m7"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">Your SHS aesthetic photo taken by mba (before covid, siapa coba yang kepikiran tetiba online sampe lulus)<br>2019</div></div></div>
+      <!-- Momen 8 -->
+      <div class="card" data-momen="m8"><div class="card-inner"><div class="card-front">?</div><div class="card-back"><img src="kulyeah.jpg" alt="8"></div></div></div>
+      <div class="card" data-momen="m8"><div class="card-inner"><div class="card-front">?</div><div class="card-back text-card">OMG! Versi kulyeahhh~ bukan versi saset<br>2022</div></div></div>
+    </div>
+  </main>
+
+  <!-- Tombol Next ini tersembunyi, nanti dimunculkan sama JavaScript -->
+  <a href="memories.html" class="btn-next hidden" id="next-btn">Next ➡️</a>
+
+  <!-- Pastikan file script-game.js kamu namanya benar ya -->
+  <script src="script-game.js"></script> 
+</body>
+</html>

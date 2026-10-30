@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 24th Birthday!</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Poppins agar tulisannya rapi dan estetik -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="landing-body">
+
+  <!-- Audio BGM -->
+  <audio id="bg-music" loop>
+    <source src="WhatsApp Audio 2026-10-29 at 19.06.56.mpeg" type="audio/mpeg">
+  </audio>
+
+  <!-- Tombol Musik di Pojok Kanan Atas -->
+  <button class="music-toggle" onclick="toggleMusic()">
+    <span id="music-icon">🎵</span>
+  </button>
+
+  <!-- Kontainer Utama bergaya Kaca (Glassmorphism) -->
+  <main class="glass-card">
+    
+    <div class="hero-images">
+      <img src="kiri.png" alt="Kucing Kiri" class="hiasan-kucing">
+      
+      <!-- Foto Profil Temanmu -->
+      <div class="photo-frame">
+        <img src="IMG_1351.jpg" alt="Birthday Girl">
+      </div>
+      
+      <img src="kanan.png" alt="Kucing Kanan" class="hiasan-kucing">
+    </div>
+<img src="14 cm (5).png" alt="Happy Birthday Banner" class="hbd-banner">
+    <h2>Time flies, but you never lose your light. Wishing you more memes and fewer problems this year~</h2>
+    <p class="intro-text">
+      Ada sesuatu yang harus kamu lakukan nic sebelum masuk ke your bday world full of luv! Cobain dulu untuk cek ingatan kamu soal diri kamu sendiri (nah loh). Klik di bawah sini untuk mulai!!!
+    </p>
+
+    <a href="game.html" class="btn-start" onclick="window.location.href='game.html'; return false;">Start Here!</a>
+  </main>
+
+  <!-- Tombol Menyerah langsung ke Memories -->
+  <a href="memories.html" class="btn-giveup">🏳️</a>
+
+  <script src="script.js"></script>
+</body>
+</html>

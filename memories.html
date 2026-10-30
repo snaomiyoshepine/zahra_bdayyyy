@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories & Wishes</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="memories-body">
+
+  <!-- Tombol Kembali ke Landing Page di Pojok Kiri Bawah -->
+  <a href="index.html" class="btn-home">🏠</a>
+  <!-- Audio Backsound -->
+<audio id="bg-music" loop>
+  <source src="Happy Birthday (Piano Version).mp3" type="audio/mpeg">
+</audio>
+
+<!-- Tombol Musik (bisa ditaruh di pojok atas/bawah) -->
+<button class="music-toggle" onclick="toggleMusic()">
+  <span id="music-icon">🎵</span>
+</button>
+
+  <main class="content-container">
+    
+    <!-- SECTION 1: GALERI POLAROID -->
+    <section class="gallery-section">
+      <h1>Our Moments 📸</h1>
+      <p class="subtitle">Perjalanan kita sampai di titik ini (masih banyak sebenernya)~</p>
+      
+      <div class="polaroid-grid">
+        <!-- Foto 1 -->
+        <div class="polaroid p-left">
+          <img src="berempatt - Copy.jpg" alt="Memori 1">
+          <p>Full member analisis sugi!!!🥳</p>
+        </div>
+        <!-- Foto 2 -->
+        <div class="polaroid p-right">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.30/eca jara.jpeg" alt="Memori 2">
+          <p>Date berdua dulu~🤙🏻</p>
+        </div>
+        <!-- Foto 3 -->
+        <div class="polaroid p-left">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.35/eng11.jpeg" alt="Memori 3">
+          <p>Your engagement! <br>💐💍
+          <br>Soon akan berganti moment ya...</p>
+        </div>
+        <!-- Foto 4 -->
+        <div class="polaroid p-right">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.35/eng1.jpeg" alt="Memori 4">
+          <p>Udah ga pake backsound "buy me ring" anjayy congrats gurl~ (dikit lagi update nih)</p>
+        </div>
+                <!-- Foto 3 -->
+        <div class="polaroid p-left">
+          <img src="Foto/WhatsApp Image 2026-10-30 at 10.01.07.jpeg" alt="Memori 3">
+          <p>Kit menuju pernikahan apa aja ya...💍👈🏻</p>
+        </div>
+        <!-- Foto 4 -->
+        <div class="polaroid p-right">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.42/bd2025.jpeg" alt="Memori 4">
+          <p>Your 23 bdayyyy  🥳</p>
+        </div>
+                <!-- Foto 3 -->
+        <div class="polaroid p-left">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.42/w2.jpeg" alt="Memori 3">
+          <p>Graduation Moment!🤧🙌🏻</p>
+        </div>
+        <!-- Foto 4 -->
+        <div class="polaroid p-right">
+          <img src="Foto/WhatsApp Image 2026-10-30 at 10.01.05.jpeg" alt="Memori 4">
+          <p>Look how beautiful our girl omaygatttt</p>
+        </div>
+                <!-- Foto 3 -->
+        <div class="polaroid p-left">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.30/kerja1.jpeg" alt="Memori 3">
+          <p>Cancinya bu bidan on duty~</p>
+        </div>
+        <!-- Foto 4 -->
+        <div class="polaroid p-right">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.30/kerja2.jpeg" alt="Memori 4">
+          <p>Bakat dari jaman sekolah iniii🥹</p>
+        </div>
+                <!-- Foto 3 -->
+        <div class="polaroid p-left">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.30/sidang.jpeg" alt="Memori 3">
+          <p>Bismillah sidang dulu gaiss</p>
+        </div>
+        <!-- Foto 4 -->
+        <div class="polaroid p-right">
+          <img src="WhatsApp Unknown 2026-10-29 at 19.26.30/sidang2.jpeg" alt="Memori 4">
+          <p>After sidangggg (udah plonggg)</p>
+        </div>
+                        <!-- Foto 3 -->
+        <div class="polaroid p-left">
+          <img src="kulyeah.jpg" alt="Memori 3">
+          <p>Coolyeah version!🤙🏻</p>
+        </div>
+        <!-- Foto 4 -->
+        <div class="polaroid p-right">
+          <img src="WhatsApp Unknown 2026-10-29 at 21.11.44/22.jpeg" alt="Memori 4">
+          <p>Twenty two years younggg🥳</p>
+        </div>
+                        <!-- Foto 3 -->
+        <div class="polaroid p-left">
+          <img src="WhatsApp Unknown 2026-10-29 at 21.11.44/20.jpeg" alt="Memori 3">
+          <p>Your twenty something!🥳</p>
+        </div>
+        <!-- Foto 4 -->
+        <div class="polaroid p-right">
+          <img src="Foto/bday182020 - Copy.jpg" alt="Memori 4">
+          <p>Your 18 bdayyyy🥳 (nyumput nahan ketawa gegara lagu mang tahu bulatnya beda remix)</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- SECTION 2: SURAT (Bisa dibuka kapan aja) -->
+    <section class="letters-section">
+      <h1>Special Wishes 💌</h1>
+      <p class="subtitle">Pesan rahasia untuk kamu dari kita yang baik, cantik, imut, kaya raya, rajin menabung dan scan qris lop</p>
+      
+      <div class="envelope-container">
+        <button class="envelope-btn" onclick="openLetter('Eca')">💌 Buka surat dari tapi dari siapa hayoo</button>
+        <button class="envelope-btn" onclick="openLetter('Giska')">💌 Buka surat dari seorang hamba Allah</button>
+        <button class="envelope-btn" onclick="openLetter('Omi')">💌 Buka surat dari orang yang udah ketebak</button>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- SECTION 3: TIUP LILIN VIRTUAL -->
+    <section class="cake-section">
+      <h1>Make a Wish! 🎂</h1>
+      <p id="wish-text">Udah doa dalem hati? Kalo udah, klik api untuk tiup lilinnya!</p>
+      
+      <div class="cake-wrapper">
+        <div id="flame" onclick="tiupLilin()">🔥</div>
+        <div class="cake">🎂</div>
+      </div>
+      
+      <h3 id="wish-success-msg" class="hidden">
+        Yeayyy! Semoga semua doanya terkabul! ✨ (apinya ga panas kan?)
+      </h3>
+    </section>
+
+  </main>
+
+  <!-- POP-UP MODAL SURAT -->
+  <div id="letter-modal" class="modal hidden">
+    <div class="modal-content glass-card">
+      <span class="close-btn" onclick="closeLetter()">&times;</span>
+      <h2 id="modal-title">Surat</h2>
+      <div id="modal-body">Isi surat...</div>
+    </div>
+  </div>
+
+  <script src="script-memories.js"></script>
+</body>
+</html>
